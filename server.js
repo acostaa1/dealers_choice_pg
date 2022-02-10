@@ -70,12 +70,12 @@ setUp();
 
 app.get('/', async (req, res, next) => {
     try {
-        const response = await client.query(`SELECT * FROM tournaments WHERE winner_id is NULL;`);
+        const response = await client.query(`SELECT * FROM tournaments WHERE winner_id is NULL AND id = 1;`);
         const tournaments = response.rows;
         res.send(`<html>
         <head>
+          <link rel= "stylesheet" href= "/styles.css">
           <nav>
-            <link rel= "stylesheet" href= "/styles.css">
             <ul>
               <li><a href= "/">Home</a></li>
               <li><a href ="/players">All Players</a></li>
@@ -84,8 +84,8 @@ app.get('/', async (req, res, next) => {
           </nav>
         </head>
         <body>
-          <h1>Upcoming Poker Tournaments</h1>
-          <table id= "upcoming-tournaments">
+          <h1 class = "tournaments">Upcoming Poker Tournaments</h1>
+          <table class= "tournaments" id= "upcoming-tournaments">
             <tr>
              <th>#</th>
              <th>Location</th>
@@ -100,32 +100,23 @@ app.get('/', async (req, res, next) => {
 
              ${num.id}`).join('')}
              </td>
+
+            ${tournaments.map(num => `<td>
+
+             ${num.location}`).join('')}
+             </td>
+             ${tournaments.map(num => `<td>
+
+             ${num.date}`).join('')}
+             </td>
              <td></td>
-             <td>Date</td>
-             <td>Sart Time<td>
              <td>Min Buy In<td>
              <td>Max Buy In<td>
              <td><a href ="/players/caesars"> Currently Registered<a><td>
              
             </tr> 
-            <tr>
-             <td>#</td>
-             <td>Location</td>
-             <td>Date</td>
-             <td>Sart Time<td>
-             <td>Min Buy In<td>
-             <td>Max Buy In<td>
-             <td>Currently Registered<td>
-            </tr> 
-            <tr>
-             <td>#</td>
-             <td>Location</td>
-             <td>Date</td>
-             <td>Sart Time<td>
-             <td>Min Buy In<td>
-             <td>Max Buy In<td>
-             <td>Currently Registered<td>
-            </tr> 
+            
+            
           </table>
           <button><a href ="/players">Register</a></button>
 
@@ -143,7 +134,9 @@ app.get('/players', async (req, res, next) => {
         const players = response.rows;
         res.send(`<html>
         <head>
+          <link rel= "stylesheet" href= "/styles.css">
           <nav>
+            
             <ul>
               <li><a href = "/">Home</a></li>
               <li><a href = "/players">All Players</a></li>
@@ -182,6 +175,7 @@ app.get('/players/caesars', async (req, res, next) => {
         const players = response.rows;
         res.send(`<html>
         <head>
+          <link rel= "stylesheet" href= "/styles.css">
           <nav>
             <ul>
               <li><a href= "/">Home</a></li>
@@ -217,6 +211,7 @@ app.get('/winners', async (req, res, next) => {
         const winners = response.rows;
         res.send(`<html>
         <head>
+          <link rel= "stylesheet" href= "/styles.css">
           <nav>
             <ul>
               <li><a href= "/">Home</a></li>

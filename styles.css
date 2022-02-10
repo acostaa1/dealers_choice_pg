@@ -1,8 +1,30 @@
 nav {
-    background-color: blue;
+    background-color: lightblue;
+    padding : .5rem;
 }
 
-table {
-    border: 2px; 
+nav > ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+nav > ul  a {
+    color: black;
     
 }
+
+.tournaments {
+    text-align: center;
+    padding: 1rem;
+}
+
+
+table td{
+    background-color: lightgrey;
+    width: 100px;
+    height: 50px;
+    text-align:  center;
+  }
+
