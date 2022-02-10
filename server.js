@@ -1,7 +1,8 @@
 const express = require ('express');
 const app = express(); 
 const pg = require('pg');
-const client = new pg.Client('postgres://localhost/poker')
+const client = new pg.Client('postgres://localhost/poker');
+const path = require('path');
 
 const port = process.env.PORT || 3000; 
 
@@ -74,6 +75,7 @@ app.get('/', async (req, res, next) => {
         res.send(`<html>
         <head>
           <nav>
+            <link rel= "stylesheet" href= "/styles.css">
             <ul>
               <li><a href= "/">Home</a></li>
               <li><a href ="/players">All Players</a></li>
